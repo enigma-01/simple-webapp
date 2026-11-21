@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="900" viewBox="0 0 1640 900" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#334e68"/></marker>
+    <marker id="o" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9822b"/></marker>
+    <style>
+      .t{font-size:15px;fill:#102a43}.s{font-size:12.5px;fill:#486581}.h{font-size:16px;font-weight:bold;fill:#102a43}
+      .ln{stroke:#334e68;stroke-width:2;fill:none;marker-end:url(#a)}
+      .lo{stroke:#d9822b;stroke-width:2;fill:none;stroke-dasharray:7 5;marker-end:url(#o)}
+      .n{fill:#334e68}.nt{fill:#fff;font-size:13px;font-weight:bold;text-anchor:middle}
+      .lbl{font-size:12.5px;fill:#243b53}
+    </style>
+  </defs>
+  <rect width="1640" height="900" fill="#fff"/>
+  <text x="820" y="42" text-anchor="middle" font-size="24" font-weight="bold" fill="#102a43">CI/CD Pipeline: Simple Web App → Docker on AWS EC2 (eu-west-1)</text>
+  <text x="820" y="68" text-anchor="middle" class="s">GitHub · GitHub Actions · Docker · Trivy · Docker Hub · AWS EC2 (Amazon Linux 2023 + Docker Engine) · Postman</text>
+
+  <rect x="30" y="330" width="170" height="130" rx="10" fill="#f0f4f8" stroke="#829ab1"/>
+  <text x="115" y="360" text-anchor="middle" class="h">Developer</text>
+  <text x="115" y="388" text-anchor="middle" class="s">Edits code locally</text>
+  <text x="115" y="406" text-anchor="middle" class="s">git commit</text>
+  <text x="115" y="424" text-anchor="middle" class="s">git push origin main</text>
+
+  <rect x="238" y="310" width="214" height="170" rx="10" fill="#f0f4f8" stroke="#829ab1"/>
+  <text x="345" y="340" text-anchor="middle" class="h">GitHub Repository</text>
+  <text x="345" y="366" text-anchor="middle" class="s">app.py · test_app.py · Dockerfile</text>
+  <text x="345" y="384" text-anchor="middle" class="s">.github/workflows/ci-cd.yml</text>
+  <text x="345" y="410" text-anchor="middle" class="s">Secrets: DOCKERHUB_TOKEN,</text>
+  <text x="345" y="428" text-anchor="middle" class="s">EC2_SSH_KEY</text>
+  <text x="345" y="450" text-anchor="middle" class="s">Vars: DOCKERHUB_USERNAME,</text>
+  <text x="345" y="468" text-anchor="middle" class="s">EC2_HOST</text>
+
+  <rect x="490" y="100" width="300" height="700" rx="12" fill="#eef6ff" stroke="#4098d7" stroke-dasharray="6 4"/>
+  <text x="640" y="128" text-anchor="middle" class="h">GitHub Actions workflow</text>
+  <text x="640" y="147" text-anchor="middle" class="s">on: push to main · manual run</text>
+
+  <rect x="510" y="165" width="260" height="110" rx="8" fill="#fff" stroke="#4098d7"/>
+  <text x="525" y="188" class="t" font-weight="bold">Job 1: test (CI)</text>
+  <text x="525" y="212" class="s">• Checkout code, set up Python 3.12</text>
+  <text x="525" y="232" class="s">• pip install -r requirements.txt</text>
+  <text x="525" y="252" class="s">• pytest: 3 unit tests</text>
+
+  <rect x="510" y="295" width="260" height="170" rx="8" fill="#fff" stroke="#4098d7"/>
+  <text x="525" y="318" class="t" font-weight="bold">Job 2: build-and-push</text>
+  <text x="525" y="342" class="s">• docker login (access token)</text>
+  <text x="525" y="362" class="s">• docker build (tags: latest, commit SHA)</text>
+  <text x="525" y="382" class="s">• Trivy scan (fail on CRITICAL)</text>
+  
+  <text x="525" y="402" class="s">• docker push → Docker Hub</text>
+  <text x="525" y="448" class="s" font-style="italic">Runs only if tests pass</text>
+
+  <rect x="510" y="485" width="260" height="150" rx="8" fill="#fff" stroke="#4098d7"/>
+  <text x="525" y="508" class="t" font-weight="bold">Job 3: deploy (CD)</text>
+  <text x="525" y="532" class="s">• SSH to EC2 with deploy key</text>
+  <text x="525" y="552" class="s">• docker pull &lt;image&gt;:latest</text>
+  <text x="525" y="572" class="s">• Replace container "web"</text>
+  <text x="525" y="592" class="s">• Run on host port 80</text>
+  <text x="525" y="612" class="s">• curl /health to verify</text>
+
+  <path d="M640 275 V295" class="ln"/><path d="M640 465 V485" class="ln"/>
+
+  <rect x="1100" y="130" width="280" height="95" rx="10" fill="#fff" stroke="#2496ed" stroke-width="2"/>
+  <text x="1240" y="160" text-anchor="middle" class="h">Docker Hub (registry)</text>
+  <text x="1240" y="184" text-anchor="middle" class="s">&lt;username&gt;/simple-webapp</text>
+  <text x="1240" y="204" text-anchor="middle" class="s">tags: latest, &lt;commit-sha&gt;</text>
+
+  <rect x="840" y="260" width="560" height="560" rx="14" fill="#fffaf0" stroke="#d9822b" stroke-width="2"/>
+  <text x="860" y="288" class="h" fill="#8d2b0b">AWS Cloud: region eu-west-1 (Ireland)</text>
+
+  <rect x="860" y="305" width="520" height="495" rx="10" fill="#f3fbf6" stroke="#3ebd93" stroke-width="2"/>
+  <text x="875" y="327" class="t" font-weight="bold" fill="#0b6e4f">Default VPC</text>
+  <rect x="1080" y="312" width="130" height="26" rx="5" fill="#fff" stroke="#3ebd93"/>
+  <text x="1145" y="330" text-anchor="middle" class="s">Internet Gateway</text>
+
+  <rect x="880" y="350" width="480" height="430" rx="8" fill="#fff" stroke="#3ebd93" stroke-dasharray="5 4"/>
+  <text x="895" y="370" class="s">Public subnet</text>
+
+  <rect x="900" y="385" width="440" height="380" rx="8" fill="#fff8f8" stroke="#c53030" stroke-dasharray="6 4"/>
+  <text x="915" y="405" class="s" fill="#9b2c2c">Security group: inbound 80 (HTTP) from anywhere · 22 (SSH, key only)</text>
+
+  <rect x="925" y="420" width="390" height="325" rx="10" fill="#fff" stroke="#d9822b"/>
+  <text x="1120" y="446" text-anchor="middle" class="h">EC2 instance (t3.micro)</text>
+  <text x="1120" y="466" text-anchor="middle" class="s">Amazon Linux 2023 · Elastic IP (public address)</text>
+
+  <rect x="950" y="485" width="340" height="235" rx="8" fill="#eaf6fe" stroke="#2496ed"/>
+  <text x="1120" y="508" text-anchor="middle" class="t" font-weight="bold">Docker Engine</text>
+  <text x="1120" y="527" text-anchor="middle" class="s">port mapping host :80 → container :8080</text>
+
+  <rect x="975" y="545" width="290" height="155" rx="8" fill="#fff" stroke="#2680c2"/>
+  <text x="1120" y="570" text-anchor="middle" class="t" font-weight="bold">Container "web"</text>
+  <text x="1120" y="592" text-anchor="middle" class="s">python:3.12-slim image</text>
+  <text x="1120" y="612" text-anchor="middle" class="s">gunicorn + Flask app on :8080</text>
+  <text x="1120" y="632" text-anchor="middle" class="s">GET /  ·  /health  ·  /api/info</text>
+  
+  <text x="1120" y="656" text-anchor="middle" class="s">--restart always</text>
+
+  <rect x="1440" y="470" width="180" height="140" rx="10" fill="#f0f4f8" stroke="#829ab1"/>
+  <text x="1530" y="500" text-anchor="middle" class="h">Users / Postman</text>
+  <text x="1530" y="526" text-anchor="middle" class="s">Browser: GET /</text>
+  <text x="1530" y="544" text-anchor="middle" class="s">Postman: /health,</text>
+  <text x="1530" y="562" text-anchor="middle" class="s">/api/info</text>
+  <text x="1530" y="586" text-anchor="middle" class="s">http://&lt;ec2-public-ip&gt;</text>
+
+  <!-- arrows -->
+  <path d="M200 395 H248" class="ln"/>
+  <circle cx="224" cy="372" r="12" class="n"/><text x="224" y="377" class="nt">1</text>
+
+  <path d="M440 380 L508 230" class="ln"/>
+  <circle cx="462" cy="292" r="12" class="n"/><text x="462" y="297" class="nt">2</text>
+  <text x="445" y="270" class="lbl" text-anchor="end">trigger</text>
+
+  <path d="M770 380 H815 V178 H1098" class="ln"/>
+  <circle cx="815" cy="300" r="12" class="n"/><text x="815" y="305" class="nt">3</text>
+  <text x="900" y="170" class="lbl">docker push :&lt;sha&gt;, :latest</text>
+
+  <path d="M770 560 H815 V600 H923" class="ln"/>
+  <circle cx="815" cy="560" r="12" class="n"/><text x="815" y="565" class="nt">4</text>
+  <text x="826" y="620" class="lbl">SSH :22</text>
+
+  <path d="M1350 225 V418" class="lo"/>
+  <text x="1356" y="250" class="lbl" fill="#8d2b0b">docker pull</text>
+
+  <path d="M1438 560 H1317" class="ln"/>
+  <circle cx="1410" cy="540" r="12" class="n"/><text x="1410" y="545" class="nt">5</text>
+  <text x="1330" y="580" class="lbl">HTTP :80</text>
+
+  <text x="820" y="860" text-anchor="middle" class="s">1 Commit and push  ·  2 Workflow triggered  ·  3 Tested, scanned image published to Docker Hub  ·  4 Deployed to EC2 over SSH  ·  5 Users and Postman access the app</text>
+</svg>

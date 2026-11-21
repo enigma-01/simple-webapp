@@ -1,0 +1,94 @@
+{
+  "info": {
+    "name": "Simple Web App",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET / (home page)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": []
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Shows message\", () => pm.expect(pm.response.text()).to.include(\"Hello\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET /health",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"status is ok\", () => pm.expect(pm.response.json().status).to.eql(\"ok\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET /api/info",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/api/info",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "info"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Has commit\", () => pm.expect(pm.response.json()).to.have.property(\"commit\"));"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://YOUR-ELASTIC-IP"
+    }
+  ]
+}
